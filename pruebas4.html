@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monica Galvis - Perfil Profesional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            line-height: 1.6;
+            margin: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 18px;
+            font-style: italic;
+        }
+
+        /* Botón cambio de tema */
+        #toggleTheme {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        /* Imagen con animación */
+        .foto {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin: 20px auto;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .foto:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Secciones con animación de scroll */
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        /* Habilidades interactivas */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill:hover {
+            background-color: #666;
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        /* Modo claro */
+        .light-mode {
+            background-color: #f0f0f0;
+            color: #222;
+        }
+
+        .light-mode .section {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .light-mode #toggleTheme {
+            border-color: black;
+            color: black;
+        }
+
+        @media (max-width: 768px) {
+            .skills {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <img src="monica-galvis.jpg" alt="Foto de Monica Galvis" class="foto">
+        <h1>Monica Galvis</h1>
+        <p>Ingeniera de Sistemas | Estudiante de Séptimo Semestre</p>
+        <button id="toggleTheme">🌙 Cambiar tema</button>
+    </div>
+
+    <div class="section">
+        <h2>Sobre mí</h2>
+        <p>Soy Ingeniera de Sistemas, apasionada por la tecnología, la programación y la innovación. Actualmente, me encuentro en el séptimo semestre de mi carrera y tengo experiencia en diversas herramientas de desarrollo de software, bases de datos, y programación en varios lenguajes. Mi objetivo es aplicar mis conocimientos para desarrollar soluciones tecnológicas que mejoren procesos y resuelvan problemas reales.</p>
+    </div>
+
+    <div class="section">
+        <h2>Habilidades</h2>
+        <div class="skills">
+            <div class="skill">JavaScript</div>
+            <div class="skill">Python</div>
+            <div class="skill">SQL</div>
+            <div class="skill">Desarrollo Web</div>
+            <div class="skill">Java</div>
+            <div class="skill">Git</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Experiencia Profesional</h2>
+        <p>Aunque aún me encuentro en proceso de formación académica, he participado en proyectos de desarrollo de software tanto a nivel académico como extracurricular. He trabajado en proyectos utilizando tecnologías como JavaScript, Node.js, y bases de datos SQL.</p>
+    </div>
+
+    <div class="section">
+        <h2>Educación</h2>
+        <p>Actualmente soy estudiante de Ingeniería de Sistemas en la Universidad [Nombre de la Universidad]. He cursado materias relacionadas con programación, estructuras de datos, algoritmos y bases de datos.</p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Monica Galvis | <a href="mailto:monica@email.com">Contacto por email</a></p>
+    </div>
+
+</div>
+
+<!-- JavaScript -->
+<script>
+document.getElementById("toggleTheme").addEventListener("click", function() {
+    document.body.classList.toggle("light-mode");
+});
+
+const sections = document.querySelectorAll(".section");
+function checkVisibility() {
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+        const boxTop = section.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+            section.classList.add("visible");
+        }
+    });
+}
+window.addEventListener("scroll", checkVisibility);
+checkVisibility();
+</script>
+
+</body>
+</html>
